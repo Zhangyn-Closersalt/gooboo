@@ -16,7 +16,7 @@
   <v-card class="ma-2">
     <v-card-title class="justify-center">修改版声明</v-card-title>
     <v-card-subtitle class="text-center">修改者是 Whiteberry Lee</v-card-subtitle>
-    <v-card-text>具体内容请查看公告，有重要通知时也会提醒您。如果觉得有帮助到您的话可以请我喝一杯柠檬水哦。</v-card-text>
+    <v-card-text>具体内容请查看公告，有重要通知时也会提醒您。如果觉得有帮助到您的话可以请白佬喝一杯柠檬水哦。</v-card-text>
     <v-card-actions class="flex-wrap justify-end">
       <v-spacer></v-spacer>
       <v-badge :value="importantNotice" color="red" overlap dot>
@@ -25,7 +25,7 @@
           公告
         </v-btn>
       </v-badge>
-      <v-btn class="ma-1" color="primary" target="_blank" href="https://github.com/baicy/gooboo/">
+      <v-btn class="ma-1" color="primary" target="_blank" href="https://github.com/zhangyn-closersalt/gooboo/">
         <v-icon class="mr-2">mdi-github</v-icon>
         {{ $vuetify.lang.t("$vuetify.info.socials.viewCode") }}
       </v-btn>
@@ -39,6 +39,8 @@
     </v-card-actions>
     <v-dialog max-width="400" v-model="viewed">
       <v-sheet class="overflow-auto pa-8" max-height="calc(60vh)">
+        本网站属于个人网站，所有对gooboo游戏的修改的目的都是照着白服抄的，并且不保证能用。<br/>
+        <hr>
         本网站属于个人网站，所有对gooboo游戏的修改的目的都参考自身需求。<br/>
         默认情况下，本网站只有不会影响任何游戏本身的辅助显示优化。<br/>
         修改功能请在“设置 - 修改”里自选是否开启。<br/>
