@@ -1045,7 +1045,7 @@ export default {
         hordeMaxTrinkets: {baseValue: 1, round: true},
         hordeSkillPointsPerLevel: {baseValue: 10, round: true},
         hordeAutocast: {round: true},
-        hordeCourageScore: {},
+        hordeCourageScore: { baseValue: 1 },
 
         hordePrestigeIncome: {group: ['currencyHordeSoulCorruptedGain', 'currencyHordeSoulCorruptedCap', 'currencyHordeCourageGain']}
     },
