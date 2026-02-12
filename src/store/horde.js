@@ -1219,8 +1219,7 @@ export default {
                 }
             } else if (subfeature === 1) {
                 // Add courage score
-                const multGetHordeCourageScore = rootGetters['mult/get']('hordeCourageScore');
-                const scoreGain = getters.courageScoreGain * multGetHordeCourageScore;
+                const scoreGain = getters.courageScoreGain;
                 if (scoreGain > 0) {
                     commit('updateKey', {key: 'courageScore', value: state.courageScore + rootGetters['mult/get']('hordeCourageScore', scoreGain) * amount});
                 }
