@@ -509,6 +509,9 @@
           <v-icon class="ml-2" v-bind="attrs" v-on="on" @click="switchThemeMode">{{ dark ? 'mdi-weather-night' : 'mdi-weather-sunny' }}</v-icon>
         </template>
       </gb-tooltip>
+      <v-btn v-if="canSeeDebug" data-cy="debug-feature" icon @click="changeScreen('debug')">
+        <v-icon>mdi-console</v-icon>
+      </v-btn>
       <v-btn icon @click="changeScreen('info')">
         <v-badge :value="importantNotice" color="red" overlap dot>
           <v-icon>mdi-information</v-icon>
@@ -670,7 +673,7 @@ import GoldenDustMenu from './components/render/GoldenDustMenu.vue';
 import Currency from './components/render/Currency.vue';
 import UpdateMessage from './components/partial/snackbar/UpdateMessage.vue';
 import CommonMessage from './components/partial/snackbar/CommonMessage.vue';
-import { APP_ENV } from './js/constants';
+import { APP_ENV, APP_TESTING } from './js/constants';
 import ImportMessage from './components/partial/snackbar/ImportMessage.vue';
 import CloudSave from './components/partial/info/CloudSave.vue';
 import { saveCloud } from './js/utils/cloud';
@@ -796,6 +799,9 @@ export default {
     },
     canSeeUpdates() {
       return APP_ENV === 'WEB';
+    },
+    canSeeDebug() {
+      return APP_TESTING && this.$store.state.unlock.debugFeature.see;
     },
     activeTutorialCss() {
       const activeTutorial = this.$store.getters['system/activeTutorial'];

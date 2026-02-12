@@ -36,9 +36,9 @@ const notes = {
     107: 'horde_30',
 };
 
-const BATTLE_PASS_COMBAT_REWARD = 1.4;
-const BATTLE_PASS_LOOT_REWARD = 1.5;
-const BATTLE_PASS_PRESTIGE_REWARD = 1.3;
+const BATTLE_PASS_COMBAT_REWARD = 1.3;
+const BATTLE_PASS_LOOT_REWARD = 1.4;
+const BATTLE_PASS_PRESTIGE_REWARD = 1.2;
 
 export default {
     namespaced: true,
@@ -808,14 +808,14 @@ export default {
 
             commit('updateKey', {key: 'player', value: newPlayerStats});
             dispatch('updatePlayerAttackMult', 1);
-            dispatch('updateHealthStats');
+            dispatch('checkPlayerHealth');
         },
         checkPlayerHealth({ state, getters, rootGetters, commit, dispatch }) {
             const maxHealth = rootGetters['mult/get']('hordeHealth', getters.playerBaseStats.health);
             if (state.respawn <= 0 && state.player.health > maxHealth) {
                 commit('updatePlayerKey', {key: 'health', value: maxHealth});
-                dispatch('updateHealthStats');
             }
+            dispatch('updateHealthStats');
         },
         updateEnemyStats({ state, rootState, getters, rootGetters, commit, dispatch }) {
             const subfeature = rootState.system.features.horde.currentSubfeature;
@@ -1222,7 +1222,7 @@ export default {
                 const multGetHordeCourageScore = rootGetters['mult/get']('hordeCourageScore');
                 const scoreGain = getters.courageScoreGain * multGetHordeCourageScore;
                 if (scoreGain > 0) {
-                    commit('updateKey', {key: 'courageScore', value: state.courageScore + scoreGain * amount});
+                    commit('updateKey', {key: 'courageScore', value: state.courageScore + rootGetters['mult/get']('hordeCourageScore', scoreGain) * amount});
                 }
 
                 if (getters.canFindTeeth) {
@@ -2263,11 +2263,8 @@ export default {
                 }, {root: true});
             }
         },
-        updateHealthStats({ state, getters, rootGetters, commit, dispatch }) {
+        updateHealthStats({ state, getters, rootGetters, dispatch }) {
             const maxHealth = rootGetters['mult/get']('hordeHealth', getters.playerBaseStats.health);
-            if (state.respawn <= 0 && state.player.health > maxHealth) {
-                commit('updatePlayerKey', {key: 'health', value: maxHealth});
-            }
             const missingHealthPercent = Math.floor((1 - (state.player.health / maxHealth)) * 100);
 
             const attackPerHealth = rootGetters['tag/values']('hordeAttackPerMissingHealth')[0];
