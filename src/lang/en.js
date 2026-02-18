@@ -1492,7 +1492,11 @@ export default {
       noResettingPedestalProgress:{
         name: 'No Resetting Pedestal Progress',
         description: 'Changing Pedestal Will not reset current level\'s progress.'
-      }
+      },
+      autoApplyCare: {
+        name: 'Auto Apply Care',
+        description: 'Auto apply care to fields.'
+      },
     },
   },
   statBreakdown: {

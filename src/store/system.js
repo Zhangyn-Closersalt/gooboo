@@ -600,6 +600,14 @@ export default {
                         value: false,
                         defaultValue: 'false'
                     },
+                    autoApplyCare: {
+                        feature: 'farm',
+                        unlock: null,
+                        hasDescription: true,
+                        type: 'switch',
+                        value: false,
+                        defaultValue: false
+                    },
                 },
             },
         },

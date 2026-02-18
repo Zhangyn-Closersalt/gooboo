@@ -95,7 +95,17 @@ export default {
                 store.dispatch('currency/spend', {feature: 'farm', name: 'rainwater', amount: careGiven});
             }
         }
-
+        // CHEAT - Auto Apply Care
+        // Loop Again to apply care after care has been applied
+        if (store.state.system.settings.cheat.items.autoApplyCare.value) {
+            store.state.farm.field.forEach((row, y) => {
+                row.forEach((cell, x) => {
+                    if (cell !== null && cell.type === 'crop' && cell.care.active) {
+                        store.dispatch('farm/applyCare', { x, y });
+                    }
+                });
+            });
+        }
         // Update best harvest stat
         if (highestGrow > 1) {
             store.commit('stat/increaseTo', {feature: 'farm', name: 'maxOvergrow', value: highestGrow});
