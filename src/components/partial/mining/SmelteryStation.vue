@@ -119,7 +119,7 @@ export default {
       return this.$store.getters['currency/canAfford'](this.price, this.price);
     },
     isBooked(){
-      return this.smeltery.book >= 0;
+      return this.smeltery.book > 0;
     },
     baseTimeNeeded() {
       return this.smeltery.timeNeeded * Math.pow(MINING_SMELTERY_TIME_INCREMENT, this.smeltery.total);
