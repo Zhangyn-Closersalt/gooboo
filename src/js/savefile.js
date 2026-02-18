@@ -204,7 +204,7 @@ function loadFile(file) {
         return;
     }
 
-    ['timestamp', 'currentDay', 'lastPlayedDays', 'theme', 'backupTimer', 'playerId', 'noteHint', 'bookHint', 'cheaterSelfMark', 'cheatDetected','extraVersion', 'listSort', 'forceXlLayout', 'endmin', 'cloudSave','critStunFix','horde2RaidKey','noResettingPedestalProgress', 'maxPrestigiousTreasureGrowth'].forEach(elem => {
+    ['timestamp', 'currentDay', 'lastPlayedDays', 'theme', 'backupTimer', 'playerId', 'noteHint', 'bookHint', 'cheaterSelfMark', 'cheatDetected', 'extraVersion', 'listSort', 'forceXlLayout', 'endmin', 'cloudSave', 'critStunFix', 'horde2RaidKey', 'noResettingPedestalProgress', 'maxPrestigiousTreasureGrowth', 'autoApplyCare'].forEach(elem => {
         if (save[elem]) {
             store.commit('system/updateKey', {key: elem, value: save[elem]});
         }
@@ -464,6 +464,7 @@ function getSavefile() {
         horde2RaidKey: store.state.system.horde2RaidKey,
         noResettingPedestalProgress: store.state.system.noResettingPedestalProgress,
         maxPrestigiousTreasureGrowth: store.state.system.maxPrestigiousTreasureGrowth,
+        autoApplyCare: store.state.system.autoApplyCare,
 
         // Generic systems
         subfeature: {},

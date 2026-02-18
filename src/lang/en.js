@@ -1497,6 +1497,10 @@ export default {
         name: 'Increasing Maximum Prestigious Treasure',
         description: 'Add more effective prestigious treasure after you unlocked more treasure slots.'
       },
+      autoApplyCare: {
+        name: 'Auto Apply Care',
+        description: 'Auto apply care to fields.'
+      },
     },
   },
   statBreakdown: {
