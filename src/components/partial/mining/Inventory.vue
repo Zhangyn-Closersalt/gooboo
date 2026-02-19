@@ -131,7 +131,7 @@
         </template>
       </gb-tooltip>
     </div>
-    <auto-enhance v-if="!isFrozen && unlock.miningEnhancement.use && subfeature === 0" />
+    <!-- <auto-enhance v-if="!isFrozen && unlock.miningEnhancement.use && subfeature === 0" /> -->
     <smeltery v-if="unlock.miningSmeltery.see && subfeature === 0" class="mt-4 mt-lg-8"></smeltery>
   </div>
 </template>
