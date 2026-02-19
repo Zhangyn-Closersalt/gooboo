@@ -600,6 +600,14 @@ export default {
                         value: false,
                         defaultValue: 'false'
                     },
+                    maxPrestigiousTreasureGrowth: {
+                        feature: 'treasure',
+                        unlock: null,
+                        hasDescription: true,
+                        type: 'switch',
+                        value: false,
+                        defaultValue: false
+                    },
                 },
             },
         },

@@ -26,7 +26,7 @@
           </div>
         </template>
         <div v-if="subitem.max === null" class="mt-0">{{ $vuetify.lang.t('$vuetify.treasure.effectOwned', $formatInt(subitem.owned)) }}</div>
-        <div v-else class="mt-0">{{ $vuetify.lang.t('$vuetify.treasure.effectMax', $formatInt(subitem.max), $formatInt(subitem.owned)) }}</div>
+        <div v-else class="mt-0">{{ $vuetify.lang.t('$vuetify.treasure.effectMax', $formatInt(maxPrestigiousTreasure), $formatInt(subitem.owned)) }}</div>
         <div v-if="subitem.minTier > 0">{{ $vuetify.lang.t('$vuetify.treasure.effectMinTier', $formatInt(subitem.minTier + 1)) }}</div>
       </gb-tooltip>
     </div>
@@ -75,6 +75,7 @@ export default {
     ...mapGetters({
       maxEventPower: 'treasure/maxEventPower',
       eventPowerPrestigeMult: 'treasure/eventPowerPrestigeMult',
+      maxPrestigiousTreasure: 'treasure/maxPrestigiousTreasure',
     }),
     effectSummary() {
       let obj = {};

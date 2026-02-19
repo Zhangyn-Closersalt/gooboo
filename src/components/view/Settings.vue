@@ -73,6 +73,7 @@ export default {
       gallery: '画廊',
       relic: '圣遗物',
       event: '事件',
+      treasure: '宝藏',
     }
   }),
   computed: {

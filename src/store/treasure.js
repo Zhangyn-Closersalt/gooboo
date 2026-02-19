@@ -1,5 +1,5 @@
 import Vue from "vue";
-import { TREASURE_EVENT_POWER_PER_LEVEL, TREASURE_EVENT_POWER_PER_TIER, TREASURE_FRAGMENT_BUY_COST, TREASURE_FRAGMENT_BUY_GAIN, TREASURE_TIER_DESTROY_MULT, TREASURE_TIER_UPGRADE_MULT } from "../js/constants";
+import { TREASURE_EVENT_POWER_PER_LEVEL, TREASURE_EVENT_POWER_PER_TIER, TREASURE_FRAGMENT_BUY_COST, TREASURE_FRAGMENT_BUY_GAIN, TREASURE_TIER_DESTROY_MULT, TREASURE_TIER_UPGRADE_MULT, TREASURE_PRESTIGE_MAX } from "../js/constants";
 import { chance, randomElem } from "../js/utils/random";
 import { roundNear } from "../js/utils/format";
 import { getSequence, logBase } from "../js/utils/math";
@@ -236,7 +236,11 @@ export default {
         },
         eventPowerPrestigeMult: (state, getters) => {
             return Math.min(state.eventPowerCache, getters.maxEventPower) * 0.0015 + 1;
-        }
+        },
+        maxPrestigiousTreasure: (state, getters, rootState, rootGetters) => {
+            const calculatedMaxPrestigiousTreasure = rootState.system.settings.cheat.items.maxPrestigiousTreasureGrowth.value ? Math.ceil(rootGetters['mult/get']('treasureSlots') / 32) : 0;
+            return Math.max(calculatedMaxPrestigiousTreasure, TREASURE_PRESTIGE_MAX);
+        },
     },
     mutations: {
         initType(state, o) {
@@ -491,9 +495,9 @@ export default {
 
             for (const [key, elem] of Object.entries(effects)) {
                 const maxEffects = state.effect[key].max;
-                let effectValue = effects[key].value;
-                if (maxEffects !== null) {
-                    effectValue = effectValue.slice(0, maxEffects);
+                let effectValue = effects[key].value.sort();
+                if (maxEffects) {
+                    effectValue = effectValue.slice(0, getters.maxPrestigiousTreasure);
                 }
                 effects[key].value = effectValue.reduce((a, b) => a + b, 0) + 1;
                 if (state.effect[key].scaling === 'divisive') {

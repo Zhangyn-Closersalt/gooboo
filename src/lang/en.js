@@ -1492,7 +1492,11 @@ export default {
       noResettingPedestalProgress:{
         name: 'No Resetting Pedestal Progress',
         description: 'Changing Pedestal Will not reset current level\'s progress.'
-      }
+      },
+      maxPrestigiousTreasureGrowth:{
+        name: 'Increasing Maximum Prestigious Treasure',
+        description: 'Add more effective prestigious treasure after you unlocked more treasure slots.'
+      },
     },
   },
   statBreakdown: {

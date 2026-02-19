@@ -1503,7 +1503,11 @@ export default {
       noResettingPedestalProgress:{
         name: '更换圣遗物不重置当前等级进度',
         description: '更换供奉底座进度将不会重置当前层进度'
-      }
+      },
+      maxPrestigiousTreasureGrowth:{
+        name: '更多的声望宝藏',
+        description: '随着宝藏格子数量的增加，生效的声望宝藏数量也会随之增加'
+      },
     },
   },
   statBreakdown: {
