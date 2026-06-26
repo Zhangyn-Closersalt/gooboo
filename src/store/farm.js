@@ -1260,11 +1260,11 @@ export default {
                 } else {
                     commit('currency/add', {feature: 'farm', name: 'rainwater', amount: 1}, {root: true});
                 }
-
                 // Chance for new care to appear immediately
-                const filled = rootState.currency.farm_rainwater.value / rootState.currency.farm_rainwater.cap;
-                if (filled > 1) {
-                    let spawnChance = 0;
+                if (!rootState.system.settings.cheat.items.autoApplyCare.value) {
+                    const filled = rootState.currency.farm_rainwater.value / rootState.currency.farm_rainwater.cap;
+                    if (filled > 1) {
+                        let spawnChance = 0;
                         if (filled <= 3) {
                             spawnChance = (filled - 1) / 6;
                         } else if (filled <= 7) {
@@ -1272,19 +1272,20 @@ export default {
                         } else {
                             spawnChance = (filled - 7) / 24 + 2 / 3;
                         }
-                    if (chance(spawnChance)) {
-                        let careEligible = [];
-                        state.field.forEach((row, y) => {
-                            row.forEach((cell, x) => {
-                                if (cell !== null && cell.type === 'crop' && !cell.care.active && cell.cache.careWeight > 0 && (x !== o.x || y !== o.y)) {
-                                    careEligible.push({x, y, weight: cell.cache.careWeight});
-                                }
+                        if (chance(spawnChance)) {
+                            let careEligible = [];
+                            state.field.forEach((row, y) => {
+                                row.forEach((cell, x) => {
+                                    if (cell !== null && cell.type === 'crop' && !cell.care.active && cell.cache.careWeight > 0 && (x !== o.x || y !== o.y)) {
+                                        careEligible.push({ x, y, weight: cell.cache.careWeight });
+                                    }
+                                });
                             });
-                        });
-                        if (careEligible.length > 0) {
-                            const careCell = careEligible[weightSelect(careEligible.map(el => el.weight))];
-                            commit('updateFieldCare', {x: careCell.x, y: careCell.y, key: 'active', value: true});
-                            dispatch('currency/spend', {feature: 'farm', name: 'rainwater', amount: 1}, {root: true});
+                            if (careEligible.length > 0) {
+                                const careCell = careEligible[weightSelect(careEligible.map(el => el.weight))];
+                                commit('updateFieldCare', { x: careCell.x, y: careCell.y, key: 'active', value: true });
+                                dispatch('currency/spend', { feature: 'farm', name: 'rainwater', amount: 1 }, { root: true });
+                            }
                         }
                     }
                 }
