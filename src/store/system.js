@@ -616,6 +616,14 @@ export default {
                         value: false,
                         defaultValue: false
                     },
+                    farmGoldToGem: {
+                        feature: 'farm',
+                        unlock: null,
+                        hasDescription: true,
+                        type:'switch',
+                        value: false,
+                        defaultValue: false
+                    },
                 },
             },
         },

@@ -1501,6 +1501,10 @@ export default {
         name: 'Auto Apply Care',
         description: 'Auto apply care to fields.'
       },
+      farmGoldToGem: {
+        name: 'Farm Gold To Gem',
+        description: 'When Gaining Gold from Farm, There is a chance that you will get a kind of gem instead.'
+      },
     },
   },
   statBreakdown: {
