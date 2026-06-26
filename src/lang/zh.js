@@ -1492,10 +1492,6 @@ export default {
         name: '矿2额外升级项',
         description: '名字显示为红色。额外用废料升级深度居民速度，公式同矿1'
       },
-      critStunFix :{
-        name: '修复部落暴击时击晕',
-        description: '修复部落暴击必定击晕bug，可以用来阻止自己偷渡'
-      },
       horde2RaidKey:{
         name: '部落2突袭钥匙',
         description: '即使当年子功能为部落2也可以获得突袭钥匙，产量为原先的1/4'
@@ -1507,6 +1503,14 @@ export default {
       maxPrestigiousTreasureGrowth:{
         name: '更多的声望宝藏',
         description: '随着宝藏格子数量的增加，生效的声望宝藏数量也会随之增加'
+      },
+      autoApplyCare: {
+        name: '自动浇水',
+        description: '自动浇水'
+      },
+      farmGoldToGem: {
+        name: '农场概率转换宝石',
+        description: '农场收获黄金时有概率转换为宝石'
       },
     },
   },

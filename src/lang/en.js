@@ -1481,10 +1481,6 @@ export default {
         name: 'Mining 2 extra upgrade',
         description: 'Add dweller speed upgrade to mining 2.'
       },
-      critStunFix :{
-        name: 'Fix Stunning on Crits',
-        description: 'Fix the bug that crit will always stun the enemy.'
-      },
       horde2RaidKey:{
         name: 'Always Get Raid Key',
         description: 'Get Raid Key even if current subfeature is classes. Speed is 1/4 as normal.'
