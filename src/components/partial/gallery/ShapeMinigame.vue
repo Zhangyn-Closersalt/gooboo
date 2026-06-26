@@ -93,7 +93,7 @@
           </template>
           <div>不需要拖动形状，直接收集对应形状</div>
           <div>和正常收集一样，只能收集存在至少5个的形状</div>
-          <div>不计入连接数目成就</div>
+          <div>只计入连接数目总数成就</div>
           <div>
             <span class="mr-1">以及每个形状需要花费</span>
             <price-tag currency="gallery_motivation" :amount="5"></price-tag>
@@ -347,6 +347,7 @@ export default {
       }
       this.$store.dispatch('currency/gain', {feature: 'gallery', name: stat.shape, gainMult: true, amount: Math.pow(stat.amount, 2)});
       this.$store.dispatch('currency/spend', {feature: 'gallery', name: 'motivation', amount: 5 * stat.amount});
+      this.$store.commit('stat/add', {feature: 'gallery', name: 'shapeComboTotal', value: stat.amount}, {root: true});
       if (this.$store.getters['gallery/shapeHasHourglass']) {
         this.$store.commit('gallery/updateKey', {key: 'hourglassCombo', value: this.$store.state.gallery.hourglassCombo + stat.amount});
       }
