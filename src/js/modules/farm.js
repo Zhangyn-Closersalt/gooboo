@@ -92,7 +92,6 @@ export default {
                     store.commit('farm/updateFieldCare', {x: cell.x, y: cell.y, key: 'active', value: true});
                     if (store.state.system.settings.cheat.items.autoApplyCare.value) {
                         store.dispatch('farm/applyCare', { x: cell.x, y: cell.y });
-                        console.log(`Dispatch on ${cell.x}, ${cell.y}`);
                     }
                     careEligible.splice(index, 1);
                 }
