@@ -673,33 +673,18 @@ export default {
                     );
                     if (goldAmount) {
                         if(rootState.unlock.gemFeature.use && rootState.system.settings.cheat.items.farmGoldToGem.value && chance(0.001)){
+                            const availableGems=['ruby','emerald','sapphire','amethyst','diamond'];
                             const gemWeights=[66,66,33,33];
                             if(rootState.unlock.gemDiamond.use){
                                 gemWeights.push(2);
                             }
                             const gemType=weightSelect(gemWeights);
-                            switch(gemType){
-                                case 0:
-                                    dispatch('currency/gain', {feature:'gem', name: 'ruby', amount: goldAmount}, {root: true});
-                                    console.log('Gained Ruby')
-                                    break;
-                                case 1:
-                                    dispatch('currency/gain', {feature:'gem', name: 'emerald', amount: goldAmount}, {root: true});
-                                    console.log('Gained Emerald');
-                                    break;
-                                case 2:
-                                    dispatch('currency/gain', {feature:'gem', name: 'sapphire', amount: goldAmount}, {root: true});
-                                    console.log('Gained Sapphire');
-                                    break;
-                                case 3:
-                                    dispatch('currency/gain', {feature:'gem', name: 'amethyst', amount: goldAmount}, {root: true});
-                                    console.log('Gained Amethyst');
-                                    break;
-                                case 4:
-                                    dispatch('currency/gain', {feature:'gem', name: 'diamond', amount: goldAmount}, {root: true});
-                                    console.log('Gained Diamond');
-                                    break;
-                            }
+                            dispatch('currency/gain', {feature:'gem', name: availableGems[gemType], amount: goldAmount}, {root: true});
+                            commit('system/addNotification', {color: 'success', timeout: 3000, message: {
+                                type: 'common',
+                                message: `Get ${goldAmount} ${availableGems[gemType]} instead of Gold`,
+                                icon: 'mdi-diamond'
+                            }}, { root: true});
                         }else{
                             dispatch('currency/gain', {feature: 'farm', name: 'gold', amount: goldAmount}, {root: true});
                         }
