@@ -13,14 +13,19 @@ export default {
                 color: 'beige',
                 produces: 'shell',
                 isLand: true,
-                terraform: {}
+                terraform: {
+                    water: {price: {}, reward: {event_sand: 500}},
+                    plain: { price: { event_cocktail: 200, event_sand: 500, event_stoneBlock: 5000 }, reward: {} }
+                }
             },
             water: {
                 icon: null,
                 color: 'blue',
                 produces: null,
                 isLand: false,
-                terraform: {}
+                terraform: {
+                    beach: {price: {event_cocktail: 150, event_sand: 500}, reward: {}}
+                }
             },
             palm: {
                 icon: 'mdi-palm-tree',
@@ -45,7 +50,9 @@ export default {
                 color: 'grey',
                 produces: 'stoneBlock',
                 isLand: false,
-                terraform: {}
+                terraform: {
+                    plain: {price: {}, reward: {event_stoneBlock: 5000}}
+                }
             },
             plain: {
                 icon: null,
@@ -54,7 +61,8 @@ export default {
                 isLand: true,
                 terraform: {
                     forest: {price: {event_cocktail: 150}, reward: {}},
-                    palm: {price: {event_cocktail: 175}, reward: {}}
+                    palm: {price: {event_cocktail: 175}, reward: {}},
+                    mountain: {price: {event_cocktail: 200}, reward: {}}
                 }
             }
         },
