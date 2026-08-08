@@ -62,7 +62,8 @@ export default {
                 terraform: {
                     forest: {price: {event_cocktail: 150}, reward: {}},
                     palm: {price: {event_cocktail: 175}, reward: {}},
-                    mountain: {price: {event_cocktail: 200}, reward: {}}
+                    mountain: {price: {event_cocktail: 200}, reward: {}},
+                    water: {price: {event_cocktail: 200}, reward: {}}
                 }
             }
         },
