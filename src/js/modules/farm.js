@@ -90,9 +90,6 @@ export default {
                     const index = weightSelect(careEligible.map(el => el.weight));
                     const cell = careEligible[index];
                     store.commit('farm/updateFieldCare', {x: cell.x, y: cell.y, key: 'active', value: true});
-                    if (store.state.system.settings.cheat.items.autoApplyCare.value) {
-                        store.dispatch('farm/applyCare', { x: cell.x, y: cell.y });
-                    }
                     careEligible.splice(index, 1);
                 }
                 store.dispatch('currency/spend', {feature: 'farm', name: 'rainwater', amount: careGiven});

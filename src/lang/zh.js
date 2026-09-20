@@ -1504,10 +1504,6 @@ export default {
         name: '更换圣遗物不重置当前等级进度',
         description: '更换供奉底座进度将不会重置当前层进度'
       },
-      autoApplyCare: {
-        name: '自动浇水',
-        description: '自动浇水'
-      },
       farmGoldToGem: {
         name: '农场概率转换宝石',
         description: '农场收获黄金时有概率转换为宝石'
