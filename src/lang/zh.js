@@ -1508,6 +1508,10 @@ export default {
         name: '农场概率转换宝石',
         description: '农场收获黄金时有概率转换为宝石'
       },
+      farmSpendGoldInsteadOfSapphire: {
+        name: '农场黄金代替蓝宝石',
+        description: '农场花费蓝宝石时可以用黄金替代支付'
+      },
     },
   },
   statBreakdown: {

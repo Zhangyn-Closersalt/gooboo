@@ -1501,6 +1501,10 @@ export default {
         name: 'Farm Gold To Gem',
         description: 'When Gaining Gold from Farm, There is a chance that you will get a kind of gem instead.'
       },
+      farmSpendGoldInsteadOfSapphire: {
+        name: 'Farm Spend Gold As Sapphire',
+        description: 'When Spending Sapphire inside Farm feature, You could spend gold instead.'
+      },
     },
   },
   statBreakdown: {

@@ -34,7 +34,7 @@ const notes = {
 };
 
 const emptyField = {type: null, color: null};
-
+const exchangeRate=4;
 export default {
     namespaced: true,
     state: {
@@ -122,6 +122,16 @@ export default {
                     price[key] = 0;
                 }
                 price[key] += elem;
+            }
+
+            if (rootState.system.settings.cheat.items.farmSpendGoldInsteadOfSapphire.value && price['gem_sapphire'] !== undefined) {
+                if (price['farm_gold'] === undefined) {
+                    price['farm_gold'] = 0;
+                }
+                const currentGold = rootGetters['currency/value']('farm_gold') - price['farm_gold'];
+                const diff = Math.max(Math.min(Math.floor(currentGold / exchangeRate), price['gem_sapphire']),0);
+                price['gem_sapphire'] -= diff;
+                price['farm_gold'] += diff * exchangeRate;
             }
 
             return price;
@@ -581,20 +591,30 @@ export default {
                     price[key] += elem;
                 }
             }
+            if (rootState.system.settings.cheat.items.farmSpendGoldInsteadOfSapphire.value && price['gem_sapphire'] !== undefined) {
+                if (price['farm_gold'] === undefined) {
+                    price['farm_gold'] = 0;
+                }
+                const currentGold = rootGetters['currency/value']('farm_gold') - price['farm_gold'];
+                const diff = Math.max(Math.min(Math.floor(currentGold / exchangeRate), price['gem_sapphire']),0);
+                price['gem_sapphire'] -= diff;
+                price['farm_gold'] += diff * exchangeRate;
+            }
             for (const [key, elem] of Object.entries(price)) {
                 if (rootGetters['currency/value'](key) < elem) {
                     canAfford = false;
                 }
             }
+            console.log(`canAfford is ${canAfford}`)
             if (field !== null && field.type === null && canAfford && (
-                o.fertilizer === null || (rootGetters['consumable/canAffordMultiple'](fertilizerPrice) && (state.fertilizer[o.fertilizer].type === 'all' || state.fertilizer[o.fertilizer].type === state.crop[o.crop].type))
+                o.fertilizer === null || ((state.fertilizer[o.fertilizer].type === 'all' || state.fertilizer[o.fertilizer].type === state.crop[o.crop].type))
             )) {
                 if (o.fertilizer !== null) {
-                    dispatch('consumable/useMultiple', fertilizerPrice, {root: true});
+                    dispatch('consumable/useMultipleFarm', fertilizerPrice, {root: true});
                 }
-                for (const [key, elem] of Object.entries(crop.cost)) {
+                for (const [key, elem] of Object.entries(price)) {
                     const split = key.split('_');
-                    dispatch('currency/spend', {feature: split[0], name: split[1], amount: elem * (o.giant ? crop.giantMult : 1)}, {root: true});
+                    dispatch('currency/spend', {feature: split[0], name: split[1], amount: elem}, {root: true});
                 }
                 let careObj = {active: false};
                 Object.keys(geneStats.care).forEach(key => {

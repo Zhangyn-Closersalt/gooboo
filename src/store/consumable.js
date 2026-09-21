@@ -103,6 +103,19 @@ export default {
                 }
             }
         },
+        // For use gold instead of sapphire cheat
+        useMultipleFarm({ state, getters, commit}, obj) {
+            if (getters.canAffordMultiple(obj)) {
+                for (let [key, elem] of Object.entries(obj)) {
+                    if (state[key].amount >= elem) {
+                        commit('updateKey', {name: key, key: 'amount', value: state[key].amount - elem});
+                    } else if (state[key].price !== null) {
+                        elem -= state[key].amount;
+                        commit('updateKey', {name: key, key: 'amount', value: 0});
+                    }
+                }
+            }
+        },
         gain({ state, commit }, o) {
             if (!state[o.name].found) {
                 commit('updateKey', {name: o.name, key: 'found', value: true});

@@ -614,6 +614,14 @@ export default {
                         value: false,
                         defaultValue: false
                     },
+                    farmSpendGoldInsteadOfSapphire: {
+                        feature: 'farm',
+                        unlock: null,
+                        hasDescription: true,
+                        type: 'switch',
+                        value: false,
+                        defaultValue: false
+                    },
                 },
             },
         },
